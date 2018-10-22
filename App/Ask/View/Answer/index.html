@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{$Think.config.ask_title}</title>
+	<meta name="keywords" content="提问，知道，php，生活"/>
+	<meta name="description" content="虎书问答是基于搜索的互动式知识问答分享平台。用户可以根据自身的需求，有针对性地提出问题；同时，这些答案又将作为搜索结果，满足有相同或类似问题的用户需求。"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/top-bar.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/question.css" />
+	<script type="text/javascript">
+		var login = false;
+		<if condition='isset($_SESSION["uid"]) && isset($_SESSION["ask_login_username"])'>
+			var login = true;
+		</if>
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/Js/question.js"></script>
+</head>
+<body>
+	<!-- top -->
+	<include file="Common:top" />
+	<div id='location'>
+		<a href="{:U('List/index')}">全部分类</a>&nbsp;&gt;&nbsp;
+		<location id='$_GET["cid"]'>
+			&nbsp;&gt;&nbsp;<a href={$url}>{$name}</a>
+		</location>
+	</div>
+
+	<!--------------------中部-------------------->
+	<div id='center-wrap'>
+		<div id='center'>
+			<div id='left'>
+				<div id='answer-info'>
+					<!-- 如果没有解决用wait -->
+					<div class='ans-state <if condition='!$askInfo["solved"]'>wait</if>'></div>
+					<div class='answer'>
+						<p class='ans-title'>{$askInfo.content}
+							<if condition='$askInfo["reward"]'><b class='point'>{$askInfo.reward}</b></if>
+						</p>
+					</div>
+					<ul>
+						<li><a href="{:U('Member/index', array('id' => $askInfo['uid']))}">{$askInfo.username}</a></li>
+						<li><i class='level lv{:exp_to_level($askInfo["exp"])}' title='Level {:exp_to_level($askInfo["exp"])}'></i></li>
+						<li>{:time_to_date($askInfo['time'])}</li>
+				
+					</ul>
+					<if condition='!$askInfo["solved"] and ($_SESSION["uid"] neq $askInfo["uid"]) and (!in_array($_SESSION["uid"], $allAnswerId))'>
+						<div class='ianswer'>
+							<form action="{:U('Answer/answer')}" id="sendAnswer" method="post">
+								<p>我来回答</p>
+								<textarea name="content"></textarea>
+								<input type="hidden" name='aid' value='{$askInfo.id}'>
+								<input type="submit" value='提交回答' id='anw-sub'/>
+							</form>
+						</div>
+					</if>
+					<!-- 满意回答 -->
+					<if condition='$askInfo["solved"]'>
+						<div class='ans-right'>
+							<p class='title'><i></i>满意回答<span></span></p>
+							<p class='ans-cons'>{$goodAnswer.content}</p>
+							<dl>
+								<dt>
+									<a href="{:U('Member/index', array('id' => $goodAnswer['uid']))}"><img src="__PUBLIC__/Images/noface.gif" width='48' height='48'/></a>
+								</dt>
+								<dd>
+									<a href="{:U('Member/index', array('id' => $goodAnswer['uid']))}">{$goodAnswer.username}</a>
+								</dd>
+								<dd><i class='level lv{:exp_to_level($goodAnswer["exp"])}' title="lv{:exp_to_level($goodAnswer["exp"])}"></i></dd>
+								<dd>采纳率：{:floor($goodAnswer['adopt'] / $goodAnswer['answer'] *100)}%</dd>
+							</dl>
+						</div>
+					</if>
+				</div>
+				<if condition='$allAnswer'>
+					<div id='all-answer'>
+						<div class='ans-icon'></div>
+						<p class='title'>共 <strong>{$askInfo.answer}</strong> 条回答</p>
+						<ul>
+							<foreach name='allAnswer' item='v'>
+								<li>
+									<div class='face'>
+										<a href="{:U('Member/index', array('id' => $v['uid']))}">
+											<img src="<if condition='$v["face"]'>
+												__ROOT__/Uploads/face/{$v.face}
+											<else />__PUBLIC__/Images/noface.gif</if>" width='48' height='48'/>
+											<span>{$v.username}</span>
+										</a>
+									</div>
+									<div class='cons <if condition='$key%2'> blue<else /> fen</if>'>
+										<p>{$v.content}<span style='color:#888;font-size:12px'>&nbsp;&nbsp;({:time_to_date($v['time'])})</span></p>
+										<!-- <p>
+											<span style="width:auto;padding:0 3px;float:left;margin-bottom:5px;" class='adopt-btn'><font color='green'>完善我的回答</font></span>
+										</p>
+										<div style="margin-left:10px " class='ianswer'>
+											<form  action="{:U('Answer/answer')}" id="sendAnswer" method="post">
+												
+												<textarea style="width:96%;margin:0 auto;height :110px;padding:3px;border: 1px solid #ACACAC;resize:none;" name="content">{$v.content}</textarea>
+												<input type="hidden" name='aid' value='{$askInfo.id}'>
+												<input type="submit" style="width: 70px;height: 26px;border: none;border-radius:4px;background : url(__PUBLIC__/Images/form-btn.png) right -300px;color: #FFF;float: right;font-size: 14px;text-align: center;cursor: pointer;margin:5px 10px 5px 10px;" value='确认修改' id='anw-sub'/>
+											</form>
+										</div> -->
+									</div>
+									<if condition='!$askInfo["solved"] and isset($_SESSION["uid"]) and ($_SESSION["uid"] eq $askInfo["uid"])'>
+										<a href="{:U('Answer/adopt', array('id' => $askInfo['id'], 'aid' => $v['id'], 'reward' => $askInfo['reward'], 'uid' => $v['uid']))}" class='adopt-btn'>采纳</a>
+									</if>
+									
+								</li>
+							</foreach>						
+						</ul>
+						<div class='page'>{$page}</div>
+					</div>
+				</if>
+				<div id='other-ask'>
+					<p class='title'>待解决的相关问题</p>
+					<table>
+						<foreach name='notSolve' item='v'>
+							<tr>
+								<td class='t1'><a href="{:U('Answer/index', array('id' => $v['id'], 'cid'=> $v['cid']))}">{$v.content}</a></td>
+								<td>{$v.answer}&nbsp;回答</td>
+								<td>{:time_to_date($v['time'])}</td>
+							</tr>
+						</foreach>						
+					</table>
+				</div>
+			</div>
+		<!-- 右侧 -->
+		<include file="Common:right" />	
+		</div>
+	</div>
+<include file="Common:footer" />	

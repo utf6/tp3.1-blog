@@ -1,0 +1,45 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>系统设置</title>
+	<link rel="stylesheet" href="/Public/Css/public.css" />
+</head>
+<body>
+	<form action="<?php echo U('System/siteSet');?>" method="post">
+		<table class="table">
+			<tr><th style="text-align:left;" colspan="2"><b>系统设置</b></th></tr>
+			<tr>
+				<td width="30%" align="right"><b>网站标题：</b></td>
+				<td>
+					<input type="text" style="width:520px" name="blog_title" value="<?php echo (C("blog_title")); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><b>网站关键词：</b></td>
+				<td>
+					<input type="text" style="width:520px" name="blog_keyword" value="<?php echo (C("blog_keyword")); ?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><b>网站描述：</b></td>
+				<td>
+					<textarea name="blog_description" cols="70" rows="3"><?php echo (C("blog_description")); ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><b>版权信息：</b></td>
+				<td>
+					<textarea name="blog_copyright" cols="70" rows="3"><?php echo (C("blog_copyright")); ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn2" value="保存修改" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</body>
+</html>

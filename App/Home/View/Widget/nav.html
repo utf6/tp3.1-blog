@@ -1,0 +1,16 @@
+<div class="rnav">
+  	<h2>栏目导航</h2>
+	<ul>
+		<foreach name='newcate' item='v'>
+			<li><a href="{:U('/c_' . $v['id'])}" >{$v.name}</a></li>
+		</foreach>	
+	</ul>      
+</div>
+<div class="rnavs">
+	<h2>栏目导航</h2>
+	<ul>
+		<foreach name='newcate' item='v'>
+			<li><a href="{:U('/c_' . $v['id'])}" >{$v.name}</a></li>
+		</foreach>					
+	</ul>      
+</div>	

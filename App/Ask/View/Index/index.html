@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{$Think.config.ask_title}</title>
+	<meta name="keywords" content="提问，知道，php，生活"/>
+	<meta name="description" content="虎书问答是基于搜索的互动式知识问答分享平台。用户可以根据自身的需求，有针对性地提出问题；同时，这些答案又将作为搜索结果，满足有相同或类似问题的用户需求。"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/top-bar.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/index.css" />
+	<script type="text/javascript">
+		var verifyUrl = "{:U('Regist/verify')}/";
+	</script>
+	<script type="text/javascript" src='__PUBLIC__/Js/index.js'></script>
+</head>
+<body>
+	<include file="Common:top" />
+<!-- top -->
+	<div class='main'>
+		<div id='left'>
+			<p class='left-title'>所有问题分类</p>
+			<ul class='left-list'>
+				<foreach name='cate' item='v'>
+					<li class='list-l1'>
+						<div class='list-l1-wrap'>
+							<h4><a href="">{$v.name}</a></h4>
+							<ul class='list-l2'>
+								<for start='0' end='3' name='i'>
+									<li><a href="{:U('List/index', array('id' => $v['child'][$i]['id']))}">{$v['child'][$i]['name']}</a></li>
+								</for>								
+							</ul>
+						</div>
+
+						<div class='list-more hidden'>
+							<ul>
+								<for start='3' end='count($v["child"])' name='i'>
+									<li><a href="{:U('List/index', array('id' => $v['child'][$i]['id']))}">{$v['child'][$i]['name']}</a></li>
+								</for>	
+							</ul>
+						</div>
+					</li>
+				</foreach>				
+			</ul>
+		</div>
+
+		<div id='center'>
+			<div id='animate'>
+				<div class='imgs-wrap'>
+					<ul>
+						<li>
+							<a href=""><img src="__PUBLIC__/Images/animate1.jpg" width='558' height='190'/></a>
+						</li>
+						<li>
+							<a href=""><img src="__PUBLIC__/Images/animate2.jpg" width='558' height='190'/></a>
+						</li>
+						<li>
+							<a href=""><img src="__PUBLIC__/Images/animate3.jpg" width='558' height='190'/></a>
+						</li>
+					</ul>
+				</div>
+				<ul class='ani-btn'>
+					<li class='ani-btn-cur'>虎书博客<i></i></li>
+					<li>虎书问答<i></i></li>
+					<li style='border:none'>虎书许愿墙<i></i></li>
+				</ul>
+			</div>
+
+			<dl class='answer-list'>
+				<dt>
+					<span class='wait-as'>待解决问题</span>
+					<a href='{:U("List/index")}'>更多>></a>
+				</dt>
+				<foreach name='wait_solve_ask' item='v'>
+					<dd>
+						<a href="{:U('Answer/index', array('id' => $v['id'], 'cid' => $v['cid']))}">{:strCut($v['content'], 66)}</a>
+						<span>{$v.answer}回答</span>
+					</dd>
+				</foreach>
+			</dl>
+
+			<dl class='answer-list'>
+				<dt>
+					<span class='reward-as'>高分悬赏问题</span>
+					<a href='{:U("List/index", array("type" => 2))}'>更多>></a>
+				</dt>
+				<foreach name='high_reward_ask' item='v'>
+					<dd>
+						<a href="{:U('Answer/index', array('id' => $v['id'], 'cid' => $v['cid']))}"><b>{$v.reward}</b>{:strCut($v['content'], 66)}</a>
+						<span>{$v.answer}回答</span>
+					</dd>
+				</foreach>				
+			</dl>
+
+		</div>
+		<!-- 右侧 -->
+		<include file="Common:right" />
+	</div>
+	<div class='clear'></div>
+<include file="Common:footer" />

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>个人中心-{$Think.config.ask_title}</title>
+	<meta name="keywords" content="提问，知道，php，生活"/>
+	<meta name="description" content="虎书问答是基于搜索的互动式知识问答分享平台。用户可以根据自身的需求，有针对性地提出问题；同时，这些答案又将作为搜索结果，满足有相同或类似问题的用户需求。"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/top-bar.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/member.css" />
+</head>
+<body>
+	<!-- top -->
+	<include file="Common:top" />
+	<div id='center'>
+		<!-- 左侧 -->
+		<include file="Common:m_left" />
+		
+		<div id='right'>
+	
+			<p class='title'><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>首页</p>
+
+			<ul class='property'>
+				<li>金币：<span>{$point}</span></li>
+				<li>经验值：<span>{$exp}</span></li>
+				<li>采纳率：<span>{$adopt}</span></li>
+			</ul>
+			<div class='list'>
+				<p><span><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>提问 <b>(共{$ask}条)</b></span><a href="">更多>></a></p>
+				<table>
+					<if condition='$myAsk'>
+						<tr>
+							<th colspan='2' style="text-align:left" >标题</th>
+							<th width='50'>回答数</th>
+							<th width='150' class='t3'>更新时间</th>
+						</tr>
+						<foreach name='myAsk' item='v'>
+							<tr>
+								<td class='t1'>
+									<a title="{$v.content}" href="{:U('Answer/index', array('id' => $v['id']))}">{:strCut($v['content'], 90)}</a>
+								</td>
+								<td><span>[ {$v.name} ]</span></td>
+								<td>{$v.answer}</td>
+								<td class='t3'>{:time_to_date($v['time'])}</td>
+							</tr>
+						</foreach>				
+					<else />
+						<tr height='140'><td>还没进行过提问</td></tr>
+					</if>
+				</table>
+			</div>
+			<div class='list'>
+				<p><span><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>回答 <b>(共{$answer}条)</b></span><a href="">更多>></a></p>
+				<table>
+					<if condition='$myAnswer'>
+						<tr>
+							<th colspan='2' class='t1'>标题</th>
+							<th width='20'>回答</th>
+							<th width='150' class='t3'>更新时间</th>
+						</tr>		
+						<foreach name='myAnswer' item='v'>
+							<tr>
+								<td width='500' class='t1'>
+									<a href="">{:strCut($v['content'], 80)}</a>
+								</td>
+								<td><span>[ {$v.name} ]</span></td>
+								<td>20</td>
+								<td class='t3'>{:time_to_date($v['time'])}</td>
+							</tr>
+						</foreach>		
+					<else />
+						<tr height='140'>
+							<td>还没有进行过回答</td>
+						</tr>
+					</if>					
+				</table>
+			</div>
+		</div>
+	</div>
+<include file="Common:footer" />

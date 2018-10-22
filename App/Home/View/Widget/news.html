@@ -1,0 +1,6 @@
+<h3 class="ph"><p>最新<span>博文</span></p></h3>
+	<ul class="paih">
+		<foreach name='news' item='v'>
+			<li><a href="{:U('/' . $v['id'])}" title="{$v.title}" target="_blank">{$v.title}</a></li>
+		</foreach>
+	</ul>

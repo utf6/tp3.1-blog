@@ -1,0 +1,70 @@
+<!-- top -->
+	<div id='top-fixed'>
+	<div id='top-bar'>
+		<ul class="top-bar-left fl">
+			<li><a href="http://www.tigerbook.cn" target='_blank'>虎书博客</a></li>
+			<li><a href="http://www.tigerbook.cn/Wish" target='_blank'>虎书许愿墙</a></li>
+		</ul>
+		<ul class='top-bar-right fr'>
+			<if condition="$Think.session.uid gt '0'">
+				<li class='userinfo'>
+					<a href="{:U('Member/index', array('id' => $_SESSION['uid']))}" class='uname'>
+						<b style="color:green">{$Think.session.ask_login_username}</b>
+					</a>
+				</li>
+				<li style='color:#eaeaf1'>|</li>
+				<li><a href="{:U('Index/loginOut')}">退出</a></li>
+			<else/>
+				<li><a href="" class='login'>登录</a></li>
+				<li style='color:#eaeaf1'>|</li>
+				<li><a href="" class='register'>注册</a></li>	
+			</if>			
+		</ul>
+	</div>
+	<!-- 提问搜索框 -->
+	<script type="text/javascript">
+		$(function(){
+			var input = $('input[name="keyword"]');
+			$('form[name="search"]').submit(function(){
+				if (input.val() == '') {
+					input.focus();
+					return false;
+				};
+			});
+
+		});
+	</script>
+	<div id='search'>
+		<div class='logo'><a href="__APP__/Ask" class='logo'></a></div>
+		<form name='search' action="{:U('Ask/search')}" target="_blank" method='post'>
+			<input type="text" maxlength="100" name='keyword' class='sech-cons'/>
+			<input type="submit" class='sech-btn'/>
+		</form>
+		<a href="{:U('Ask/index')}" class='ask-btn'></a>
+	</div>
+<!-- 提问搜索框结束 -->
+</div>
+<div style='height:110px'></div>
+<!----------导航条---------->
+<div id='nav'>
+	<ul class='list'>
+		<li class='nav-sel'><a href="__APP__/Ask" class='home'>问答首页</a></li>
+		<li class='nav-sel ask-cate'>
+			<a href="{:U('List/index')}" class='ask-list'><span>问题库</span><i></i></a>
+			<ul class='hidden'>
+				<topCate >
+					<li><a href="{$url}">{$name}</a></li>
+				</topCate>			
+			</ul>
+		</li>
+	</ul>
+	<p class='total'>累计提问：{$count_ask}</p>
+</div>
+	<if condition='!isset($_SESSION["uid"]) OR !isset($_SESSION["ask_login_username"])'>
+		<!-- 注册框 -->
+		<include file="Common:regist" />
+		<!-- 登陆框 -->
+		<include file="Common:login" />
+	</if>
+
+<!--背景遮罩--><div id='background' class='hidden'></div>

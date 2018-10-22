@@ -1,0 +1,1 @@
+<?php	return array ( 'blog_title' => '虎书博客 - web开发技术分享博客', 'blog_keyword' => '虎书博客，web开发，php开发，个人博客，许愿墙,虎书，hushu', 'blog_description' => '虎书博客-web开发技术分享,与大家分享遇到的php开发问题的解决方法。博客基本为个人经验之谈,希望对大家web开发有所帮助，部分博文摘自网络。', 'blog_copyright' => '<p>Copyright 2013 – 2015 虎书博客</p> <p>All Rights Reserved <a href="http://www.miitbeian.gov.cn" target="_blank">陕ICP备14011250号-2</a></p>', );?>

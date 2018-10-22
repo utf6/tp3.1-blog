@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{:strCut($key_words, 15)}搜索结果-{$Think.config.ask_title}</title>
+	<meta name="keywords" content="后盾问答"/>
+	<meta name="description" content="后盾问答"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/index.css" />
+</head>
+<body>
+	<!-- 搜索顶部 -->
+	<div class="search_top">
+		<div class="sealeft">
+			<a href=""><img src="__PUBLIC__/images/t0150f9b7bd1b41d84e.png" alt="" /></a>
+			<a href="http://www.houdunwang.com">虎书博客</a>
+			<a href="http://www.houdunwang.com">虎书许愿墙</a>
+		</div>
+
+	</div>
+	<!-- 搜索顶部结束 -->
+	<!-- 搜索框 -->
+	<script type="text/javascript">
+		$(function(){
+			var input = $('input[name="keyword"]');
+			$('form[name="search"]').submit(function(){
+				if (input.val() == '') {
+					input.focus();
+					return false;
+				};
+			});
+
+		});
+	</script>
+	<div class="search_box">
+		<form name='search' action="{:U('Ask/search')}" method='post'>
+			<input type="text" maxlength="100" value="{$key_words}" name='keyword' class='searchInput'/> 
+			<input type="submit" value="搜索答案" class="sub"/>
+		</from>
+		
+		<a href="{:U('Ask/index')}" target="_blank">我要提问</a>
+	</div>
+	<!-- 搜索框结束 -->
+	<!-- 搜索内容 -->
+	<div class="searcont">
+		<if condition='$result'>
+			<foreach name='result' item='v'>
+				<ul>
+					<li> <a target='_blank' href="{:U('Answer/index', array('id' => $v['id'], 'cid' => $v['cid']))}" class="title">{$v.content}</a> </li>
+					<li>{$v.answerContent}</li>
+					<li class="time">						
+						<span>
+							<location id='$v["cid"]'>
+								<if condition='$v["cid"] neq $id'>
+									<a href='{$url}'>{$name}</a>&nbsp;&gt;&nbsp;
+								<else />
+									<a href='{$url}'>{$name}</a>
+								</if>								
+							</location>
+						</span> - {$v.answer}个回答 - 提问时间: {:time_to_date($v['time'])}
+					</li>
+				</ul>
+			</foreach>			
+		<else />
+			<span>未搜索到 <font color='red'>{:strCut($key_words, 50)}</font> 结果，去向网友<a href="{:U('Ask/index')}">提问</a>吧！！</span>
+		</if>
+
+	</div>
+<include file='Common:footer' />

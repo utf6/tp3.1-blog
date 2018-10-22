@@ -1,0 +1,6 @@
+[ 2016-12-11T19:31:28+08:00 ] 175.22.22.34 /
+ERR: SQLSTATE[HY000]: General error: 2013 Lost connection to MySQL server during query
+
+[ 2016-12-11T19:34:46+08:00 ] 175.22.22.34 /
+ERR: SQLSTATE[HY000]: General error: 2013 Lost connection to MySQL server during query
+

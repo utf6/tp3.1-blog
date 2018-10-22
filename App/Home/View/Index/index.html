@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>{$Think.config.blog_title}</title>
+	<meta name="keywords" content="{$Think.config.blog_keyword}" />
+	<meta name="description" content="{$Think.config.blog_description}" />
+	<link href="__PUBLIC__/css/base.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/index.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="__PUBLIC__/Js//modernizr.js"></script>
+	<![endif]-->
+	<link href="__PUBLIC__/css/lrtk.css" rel="stylesheet" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+</head>
+	<body>
+		<include file="Common:nav" />
+		<div class="banner">
+			<section class="box">
+				<ul class="texts">
+				  <p>我们不停的翻弄着回忆</p>
+				  <p>却再也找不回那时的自己</p>
+				  <p>红尘一梦，不再追寻</p>
+				</ul>
+				<div class="avatar"><a href="about.html"><span>科巴</span></a> </div>
+			</section>
+		</div>
+		
+		<!-- {:W('Blog/top')} -->
+		
+		<article>
+			<h2 class="title_tj"><p>文章<span>推荐</span></p></h2>
+			<div class="bloglist left">
+				<foreach name='blog' item='v'>				
+					<h3><a href="{:U('/' . $v['id'])}" >{$v.title}</a></h3>
+					<figure><img src="./Uploads{$v.blogpic}" alt="{$v.title}"></figure>
+					<ul>
+						<p>{$v.remark}</p>
+					  	<a title="{$v.title}" href="{:U('/' . $v['id'])}"  target="_blank" class="readmore">阅读全文>></a>
+					</ul>
+					<p class="dateview"><span>{$v.addtime|date='Y-m-d',###}</span><span>作者：Coba</span><span>虎书博客：[<a href=
+						>{$v.name}</a>]</span></p>    
+				</foreach>    
+			</div>
+			<aside class="right">
+				<div class="weather11">
+					<iframe width="200" scrolling="no" height="55" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=35&icon=1&num=3"></iframe>
+				</div>
+				
+				<include file="Common:right" />
+			</aside>
+		</article>
+		<include file="Common:footer" />
+	</body>
+</html>

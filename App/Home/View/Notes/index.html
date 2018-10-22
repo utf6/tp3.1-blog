@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随心笔记 - {$Think.config.blog_title}</title>
+	<meta name="keywords" content="{$Think.config.blog_keyword}" />
+	<meta name="description" content="{$Think.config.blog_description}" />
+	<link href="__PUBLIC__/css/base.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/mood.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="__PUBLIC__/js/modernizr.js"></script>
+	<![endif]-->
+	<!-- 返回顶部调用 begin -->
+	<link href="__PUBLIC__/css/lrtk.css" rel="stylesheet" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+	<!-- 返回顶部调用 end-->
+</head>
+<body>
+	<include file="Common:nav" />
+
+	<div class="moodlist">
+		<h1 class="t_nav"><span>删删写写，回回忆忆，虽无法行云流水，却也可碎言碎语。</span><a href="http://www.tigerbook.cn" class="n1">网站首页</a><a href="{:U('/notes')}" class="n2">随心笔记</a></h1>
+		<div class="bloglist">
+			<foreach name="notes" item='v'>
+				<ul class="arrow_box">
+					<div class="sy">
+						<p><if condition="$v['notespic']"><img src="__ROOT__/Uploads{$v.notespic}" alt="{$v.title}" /></if><b style="color:red">{$v.title}</b></p>{$v.content}
+					</div>
+					<span class="dateview">{$v.addtime|date='Y-m-d',###}</span>
+				</ul>
+			</foreach>
+			
+		</div>
+		<div class="page">{$page}</div> 
+	</div>
+	<include file="Common:footer" />
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!----------注册框---------->
+<script type="text/javascript" src="__PUBLIC__/Js/regist.js"></script>
+<script type="text/javascript">
+	var checkAccountUrl = "{:U('Regist/checkAccount')}";
+	var checkVerifyUrl = "{:U('Regist/checkVerify')}";
+	var checkUsernameUrl = "{:U('Regist/checkUsername')}";
+	var checkLoginUrl = "{:U('Login/checkLogin')}"
+</script>
+<div id='register' class='hidden'>
+	<div class='reg-title'>
+		<p>欢迎注册虎书问答</p>
+		<a href="" title='关闭' class='close-window'></a>
+	</div>
+	<div id='reg-wrap'>
+		<div class='reg-left'>
+			<ul>
+				<li><span>账号注册</span></li>
+			</ul>
+			<div class='reg-l-bottom'>
+				已有账号，<a href="" id='login-now'>马上登录</a>
+			</div>
+		</div>
+		<div class='reg-right'>
+			<form action="{:U('Regist/regist')}" method='post' name='regist'>
+				<ul>
+					<li>
+						<label for="reg-uname">账号</label>
+						<input type="text" name='account' id='reg-account'/>
+						<span>6-14个字符：字母、数字或中文</span>
+					</li>
+					<li>
+						<label for="reg-uname">用户名</label>
+						<input type="text" name='username' id='reg-uname'/>
+						<span>2-14个字符：字母、数字或中文</span>
+					</li>
+					<li>
+						<label for="reg-pwd">密码</label>
+						<input type="password" name='pwd' id='reg-pwd'/>
+						<span>6-20个字符:字母、数字或下划线 _</span>
+					</li>
+					<li>
+						<label for="reg-pwded">确认密码</label>
+						<input type="password" name='pwded' id='reg-pwded'/>
+						<span>请再次输入密码</span>
+					</li>
+					<li>
+						<label for="reg-verify">验证码</label>
+						<input type="text" name='verify' id='reg-verify'/>
+						<img src="{:U('Regist/verify','','')}" width='140' height='40' alt="验证码" id='verify-img'/>
+						<span>请输入图中的字母或数字，不区分大小写</span>
+					</li>
+					<li class='submit'>
+						<input type="submit" value='立即注册'/>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>

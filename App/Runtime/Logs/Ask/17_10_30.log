@@ -1,0 +1,6 @@
+[ 2017-10-30T00:42:19+08:00 ] 66.249.79.64 /index.php?m=Ask&c=List&a=index&id=80&type=3
+ERR: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+
+[ 2017-10-30T01:59:34+08:00 ] 106.11.153.241 /index.php?a=index&c=List&id=99&m=Ask
+ERR: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '116.255.150.169' (4)
+

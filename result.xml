@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+<!-- urlset，urlset用来标记整个文档的开头，最少出现1次 最多出现1次 -->
+	<url>
+	<!-- url，url标记每条信息的开始和结束，最少出现0次 最多出现50000次 -->
+		<loc>http://tigerbook.cn/</loc>
+		<!-- loc，该条数据的存放地址，最少出现1次 最多出现1次，类型为URL地址，最小长度1个字符	最大长度256个字符	必须符合正则表达式(http://)(.+) -->
+		<lastmod>2013-01-01</lastmod>
+		<!-- lastmod，指该条数据的最新一次更新时间，最少出现0次 最多出现1次，类型为日期或日期时间，格式为YYYY-MM-DD的日期或者格式为YYYY-MM-DDThh:mm:ss的日期时间（请注意日期与时间之间以“T”分隔） -->
+		<changefreq>always</changefreq>
+		<!-- changefreq，指该条数据的更新频率，最少出现0次 最多出现1次，类型为字符串，有效值为：always、hourly、daily、weekly、monthly、yearly、never -->
+		<priority>1.0</priority>
+		<!-- priority，用来指定此链接相对于其他链接的优先权比值，此值定于0.0-1.0之间，最少出现0次 最多出现1次，类型为小数，最小值为（包含）0.0	最大值为（包含）1.0 -->
+		<data>
+		<!-- data，，最少出现1次 最多出现1次 -->
+			<display>
+			<!-- display，，最少出现1次 最多出现1次 -->
+				<title>{$v.title}</title>
+				<!-- title: 标题，标题，最少出现0次 最多出现1次，类型为字符串 -->
+				<content></content>
+				<!-- content: 正文内容，站长如能推送全文，则不需要spider再抓取，最少出现0次 最多出现1次，类型为字符串 -->
+				<tag>PHP</tag><tag>ThinkPHP</tag><tag>Web开发</tag><tag>DIV+CSS</tag><tag>Linux</tag>
+				<!-- tag: 内容标签，内容标签，可以是内容主题、领域、分类等的简短说明文字。可定义多个（≤20），最少出现0次 最多出现20次，类型为字符串 -->
+				<pubTime>{$v.time|date='Y-m-d H:s',###}</pubTime>
+				<!-- pubTime: 发布时间，格式为YYYY-MM-DDThh:mm:ss，最少出现0次 最多出现1次，类型为日期时间，格式为YYYY-MM-DDThh:mm:ss，请注意日期与时间之间以“T”分隔 -->
+				<breadCrumb title="{$v.title}" url="{:U('/' . $v['id'])}">T</breadCrumb>
+				<!-- breadCrumb: 结果路径，结果路径，有顺序规定，写在最前为最高层级。可定义多个（≤4），最少出现0次 最多出现4次，类型为字符串 -->
+				<!-- 属性title，层级名称，或频道、版块名称，可选，类型为字符串 -->
+				<!-- 属性url，层级首页地址，可选，类型为字符串 -->
+				<thumbnail loc=""<if condition="$v['bokePic']"> __ROOT__/Uploads/Pic/{$v.bokePic}<else/>__PUBLIC__/images/web.jpg
+		            </if>" alt="{$v.title}">T</thumbnail>
+				<!-- thumbnail: 缩略图，缩略图，用来展现在结果摘要中，最少出现0次 最多出现10次，类型为字符串 -->
+				<!-- 属性loc，缩略图地址，支持格式gif、jpg、jpeg、png，可选，类型为字符串 -->
+				<image loc="http://docs.kaoyan.com/jpg/12/12048543278e760d.jpg" title="七个最常用的泰勒展开式">T</image>
+				<!-- image: 图片，正文里出现的图片；thumbnail缺失时，缩略图展现选用image第一张图片，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性loc，图片存放地址，可选，类型为字符串 -->
+				<!-- 属性title，如果图片无标题，可填写该图片的标签等，可选，类型为字符串 -->
+				<video loc="http://v.youku.com/v_show/id_XNDA3ODI1MTE2.html" title="考研访谈：名师陈文灯教授数学复习指导答疑 " thumbnail_loc="http://g2.ykimg.com/0100641F464FCCBFE9328D04A5719A80053701-E1FA-FF97-B990-39B8B55777EB" duration="217509">T</video>
+				<!-- video: 视频，正文里出现的视频，最少出现0次 最多出现10次，类型为字符串 -->
+				<!-- 属性loc，指向实际视频媒体文件的网址，或者是指向特定视频的播放器的网址，可选，类型为字符串 -->
+				<!-- 属性title，视频标题，可选，类型为字符串 -->
+				<!-- 属性thumbnail_loc，视频缩略图的存放地址，可选，类型为字符串 -->
+				<!-- 属性duration，单位：秒，可选，类型为字符串 -->
+				<author nickname="用户昵称，支持中英文、数字、下划线或减号" url="http://www.baidu.com/p/%C2%CC%C3%B1%D7%D3%D0%A1%CD%AC%D1%A7" thumbnail="http://tb.himg.baidu.com/sys/portrait/item/080fc2ccc3b1d7d3d0a1cdacd1a7c80f">T</author>
+				<!-- author: 作者，帖子或博客作者，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性nickname，，可选，类型为字符串 -->
+				<!-- 属性url，作者个人首页地址，不支持中文字符，可选，类型为字符串 -->
+				<!-- 属性thumbnail，作者头像地址，可选，类型为字符串 -->
+				<replyCount>23</replyCount>
+				<!-- replyCount: 回复数，论坛贴子回帖数，或博客评论数，最少出现0次 最多出现1次，类型为整数 -->
+				<property>精华</property>
+				<!-- property: 内容属性，主要用于帖子，例如精华、热门、置顶等属性，最少出现0次 最多出现3次，类型为字符串 -->
+				<price new="3.9" old="5.5">3.3</price>
+				<!-- price: 价格，商品价格，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性new，商品价格或打折优惠后的现价，可选，类型为小数 -->
+				<!-- 属性old，打折优惠前的价格，可选，类型为小数 -->
+				<discount value="8.6" description="仅售58元,价值68元自助午餐!缤纷滋味,多时段畅享美食,美味不停嘴!(另有不同售价3款套餐可选)">T</discount>
+				<!-- discount: 折扣优惠，T可以不填，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性value，折扣值，可选，类型为小数 -->
+				<!-- 属性description，折扣优惠介绍，可选，类型为字符串 -->
+				<review rating="4.2" rating_base="5" count="56">T</review>
+				<!-- review: 评价，商品、活动、影视著作等的评价，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性rating，默认采用5分制，即最高分为5分、最低分为1分，可选，类型为小数 -->
+				<!-- 属性rating_base，评分的基数值或“满分”值，站长可根据实际情况来填写，或者保持不填；只填写rating_base而不填rating是没有意义的，可选，类型为字符串 -->
+				<!-- 属性count，评分人数，可选，类型为整数 -->
+				<location address="朝阳区阜通东大街6号院方恒购物中心4楼" tel="010-84783833" area="朝阳区" coordinate="+40.783333,-73.966667">T</location>
+				<!-- location: 地点，商品、活动等所在地，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性address，机构或活动的地址，可选，类型为字符串 -->
+				<!-- 属性tel，机构或活动组织者电话，可选，类型为字符串 -->
+				<!-- 属性area，地域范围，可以是地区、城市甚至国家。主要用于筛选，可选，类型为字符串 -->
+				<!-- 属性coordinate，采用WGS84标准。格式为：纬度,经度。北纬+，南纬-，东经+，西经-。小数点后最多保留6位，可选，类型为字符串 -->
+				<time startDate="2012-12-05T21:30:13" endDate="2012-12-05T21:30:13">T</time>
+				<!-- time: 时间，事件、活动的开始、结束时间t，最少出现0次 最多出现1次，类型为字符串 -->
+				<!-- 属性startDate，，可选，类型为日期时间，格式为YYYY-MM-DDThh:mm:ss，请注意日期与时间之间以“T”分隔 -->
+				<!-- 属性endDate，格式为YYYY-MM-DDThh:mm:ss，可选，类型为日期时间，格式为YYYY-MM-DDThh:mm:ss，请注意日期与时间之间以“T”分隔 -->
+			</display>
+		</data>
+	</url>
+</urlset>

@@ -1,0 +1,12 @@
+[ 2017-11-28T13:07:22+08:00 ] 101.132.41.217 /index.php?m=Ask&c=List&a=index&id=50&type=0
+ERR: SQLSTATE[42000] [1226] User 'hushu_f' has exceeded the 'max_user_connections' resource (current value: 30)
+
+[ 2017-11-28T13:07:22+08:00 ] 101.132.41.217 /index.php?m=Ask&c=List&a=index&id=117&type=1
+ERR: SQLSTATE[42000] [1226] User 'hushu_f' has exceeded the 'max_user_connections' resource (current value: 30)
+
+[ 2017-11-28T13:07:22+08:00 ] 172.104.73.158 /index.php?m=Ask&c=List&a=index&id=139
+ERR: SQLSTATE[42000] [1226] User 'hushu_f' has exceeded the 'max_user_connections' resource (current value: 30)
+
+[ 2017-11-28T13:07:22+08:00 ] 172.104.118.51 /index.php?m=Ask&c=List&a=index&id=138
+ERR: SQLSTATE[42000] [1226] User 'hushu_f' has exceeded the 'max_user_connections' resource (current value: 30)
+

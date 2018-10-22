@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>回答管理-虎书问答</title>
+	<link rel="stylesheet" href="__PUBLIC__/Css/public.css" />
+</head>
+<body>
+	<table class="table">
+		<tr><th colspan="9" style="text-align:left">问题管理</b></tr>
+		<tr align='center'>
+			<td><input type="checkbox" /></td>
+			<td><b>ID</b></td>
+			<td width='30%'><b>回答内容</b></td>
+			<td><b>回答者</b></td>
+			<td><b>所属问题</b></td>
+			<td><b>提问者</b></td>
+			<td><b>回答时间</b></td>
+			<td><b>是否被采纳</b></td>
+			<td><b>操作</b></td>
+		</tr>
+		<foreach name='answer' item='v'>
+			<tr align='center'>
+				<td><input type="checkbox" /></td>
+				<td>{$v.id}</td>
+				<td>{$v.content}</td>
+				<td>{$v.answer}</td>
+				<td>{$v.ask}</td>
+				<td>{$v.asker}</td>
+				<td>{$v.time|date='y-m-d H:i', ###}</td>
+				<td><if condition='$v["adopt"]'><font color='green'>被采纳</font><else /><font color='red'>未被采纳</font></if></td>
+				<td>
+					<a onclick="return confirm('确定删除吗？')" class='btn3' href="{:U('Answer/delete', array('id' => $v['id'], 'aid' => $v['aid'], 'uid' => $v['uid'], 'sloved' => $v['sloved'], 'askId' => $v['askId']))}">删除</a>
+				</td>
+			</tr>
+		</foreach>
+		<tr><td class='page' colspan="10" align='center'>{$page}</td> </tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>添加节点</title>
+	<link rel="stylesheet" href="/Public/Css/public.css" />
+</head>
+<body>
+	<form action="<?php echo U('Rbac/doEditNode');?>" method='post'>
+		<table class="table">
+			<tr>
+				<td colspan="2"><input type="button" value='修改<?php echo ($type); ?>' /></td>
+			</tr>
+			<tr>
+				<td align="right"><?php echo ($type); ?>名称：</td>
+				<td><input type="text" name='name' value="<?php echo ($node['name']); ?>" /></td>
+			</tr>
+			<tr>
+				<td align="right"><?php echo ($type); ?>描述：</td>
+				<td><input type="text" name='title' value="<?php echo ($node['title']); ?>" /></td>
+			</tr>
+			<tr>
+				<td align="right">状态：</td>
+				<td>
+					<input type="radio" name='status' value='0' <?php if($node["status"] == 0): ?>checked=checked<?php else: endif; ?> />&nbsp;启用&nbsp;
+					<input type="radio" name='status' value='1' <?php if($node["status"] == 1): ?>checked=checked<?php else: endif; ?> />&nbsp;禁用
+				</td>
+			</tr>
+			<tr>
+				<td align="right">排序：</td>
+				<td><input type="text" name='sort' value='1' /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="hidden" name='id' value='<?php echo ($node["id"]); ?>' />
+					<input type="submit" class='btn2' value='保存修改' />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</body>
+</html>

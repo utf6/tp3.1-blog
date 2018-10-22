@@ -1,0 +1,32 @@
+<!----------登录框---------->	
+<div id='login' class='hidden'>
+	<div class='login-title'>
+		<p>欢迎您登录虎书问答</p>
+		<a href="" title='关闭' class='close-window'></a>
+	</div>
+	<div class='login-form'>
+		<span id='login-msg'></span>
+		<!-- 登录FORM -->
+		<form action="{:U('Login/login')}" method='post' name='login'>
+			<ul>
+				<li>
+					<label for="login-acc">账号</label>
+					<input type="text" name='account' class='input' id='login-acc'/>
+				</li>
+				<li>
+					<label for="login-pwd">密码</label>
+					<input type="password" name='pwd' class='input' id='login-pwd'/>
+				</li>
+				<li class='login-auto'>
+					<label for="auto-login">
+						<input type="checkbox" checked='checked' name='auto'  id='auto-login'/>&nbsp;本周7天自动登录
+					</label>
+					<a href="" id='regis-now'>注册新账号</a>
+				</li>
+				<li>
+					<input type="submit" value='' id='login-btn'/>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>

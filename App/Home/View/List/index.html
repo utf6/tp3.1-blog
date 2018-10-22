@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Web开发 - {$Think.config.blog_title}</title>
+  <meta name="keywords" content="{$Think.config.blog_keyword}" />
+  <meta name="description" content="{$Think.config.blog_description}" />
+  <link href="__PUBLIC__/css/base.css" rel="stylesheet">
+  <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="__PUBLIC__/js/modernizr.js"></script>
+  <![endif]-->
+  <!-- 返回顶部调用 begin -->
+  <link href="__PUBLIC__/css/lrtk.css" rel="stylesheet" />
+  <script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+  <!-- 返回顶部调用 end-->
+</head>
+<body>
+	<include file="Common:nav"/>
+
+	
+
+  	<article class="blogs">
+		<h1 class="t_nav"><span>“慢生活”不是懒惰</span><a href="__APP__" class="n1">网站首页</a><a href="{:U('/web')}
+			" class="n2">Web开发</a></h1>
+		<div class="newblog left">
+			<foreach name='blog' item='v'>
+				<h2><a title="{$v.title}" href="{:U('/' . $v['id'])}">{$v.title}</a></h2>
+				<p class="dateview"><span>发布时间：{$v.addtime|date='Y-m-d',###}</span><span>作者：科巴</span><span>[<a href="{:U('/c_' . $v['cid'])}">{$v.name}</a>]</span></p>
+				<figure><a title="{$v.title}" href="{:U('/' . $v['id'])}" ><if condition="$v['blogpic']"><img width="170" height="110" src="__ROOT__/Uploads{$v.blogpic}" alt="{$v.title}" ><else/><img src="__PUBLIC__/images/web.jpg" width="170" height="110"  alt="{$v.title}" ></if></a></figure>
+				<ul class="nlist">
+					<p>{$v.remark}</p>
+					<a href="{:U('/' . $v['id'])}" title="{$v.title}" target="_blank" class="readmore">阅读全文>></a>
+				</ul>
+				<div class="line"></div>
+			</foreach>				
+			<div class="blank"></div>
+			<div class="page">{$page}</div>
+		</div>
+		<aside class="right">
+			{:W('Blog/nav')}
+			<div class="blank"></div>
+			<div class="news">
+				{:W('Blog/news')}
+				
+				{:W('Blog/hot')}
+			</div>
+		</aside>
+	</article>
+	<include file="Common:footer"/>
+</body>
+</html>

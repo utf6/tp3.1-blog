@@ -1,0 +1,102 @@
+<div id='right'>
+	<if condition="isset($_SESSION['uid']) OR isset($_SESSION['username'])">
+
+		<userinfo id='$_SESSION["uid"]'>
+			<div class='userinfo'>
+				<dl>
+					<dt>
+						<a href="{$url}"><img src="{$face}" width='48' height='48' alt="{$username}"/></a>
+					</dt>
+					<dd class='username'>
+						<a href="{$url}"><b>{$username}</b></a>
+						<a href="">
+							<i class='level lv{$level}' title='lv{$level}'></i>
+						</a>
+					</dd>
+					<dd>金币：<a href="" style="color: #888888;">{$point}<b class='point'></b></a></dd>
+					<dd>经验值：{$exp}</dd>
+				</dl>
+				<table>
+					<tr>
+						<td>回答数</td>
+						<td>采纳率</td>
+						<td class='last'>提问数</td>
+					</tr>
+					<tr>
+						<td><a target='_blank' href="{:U('Member/answer', array('id' => $id, 'from' => 'answer'))}">{$answer}</a></td>
+						<td><a target='_blank' href="{:U('Member/answer', array('id' => $id, 'from' => 'answer', 'type' => 1))}">{$adopt}</a></td>
+						<td class='last'><a target='_blank' href="{:U('Member/ask', array('id' => $id, 'from' => 'ask'))}">{$ask}</a></td>
+					</tr>
+				</table>
+				<ul>
+					<li><a target='_blank' href="{:U('Member/ask', array('id' => $id, 'from' => 'ask'))}">我提问的</a></li>
+					<li><a target='_blank' href="{:U('Member/answer', array('id' => $id, 'from' => 'answer'))}">我回答的</a></li>
+				</ul>
+			</div>
+		</userinfo>
+	<else />
+		<div class='r-login'>
+			<span class='login'><i></i>&nbsp;登录</span>
+			<span class='register'><i></i>&nbsp;注册</span>
+		</div>
+	</if>
+	<div class='clear'></div>
+	<div class='star'>
+		<p class='title'>虎书问答之星</p>
+		<span class='star-name'>本日回答问题最多的人</span>
+		<todayAnswer limit='3'>
+			<div class='star-info'>
+				<div>
+					<a href="{$url}" class='star-face'>
+						<img src="{$face}" width='48px' height='48px' alt="{$username}"/>
+					</a>
+					<ul>
+						<li><a href="{$url}">{$username}</a></li>
+						<i class='level lv{$level}' title='Level {$level}'></i>
+					</ul>
+				</div>
+				<ul class='star-count'>
+					<li>回答数：<span>{$answer}</span></li>
+					<li>采纳率：<span>{$adopt}</span></li>
+				</ul>
+			</div>
+		</todayAnswer>
+		<span class='star-name'>历史回答问题最多的人</span>
+		<historyAnswer limit='2'>
+			<div class='star-info'>
+				<div>
+					<a href="{$url}" class='star-face'>
+						<img src="{$face}" width='48px' height='48px' alt="{$username}"/>
+					</a>
+					<ul>
+						<li><a href="{$url}">{$username}</a></li>
+						<i class='level lv{$level}' title='Level {$level}'></i>
+					</ul>
+				</div>
+				<ul class='star-count'>
+					<li>回答数：<span>{$answer}</span></li>
+					<li>采纳率：<span>{$adopt}</span></li>
+				</ul>
+			</div>
+		</historyAnswer>
+	</div>
+	<div class='star-list'>
+		<p class='title'>虎书问答助人光荣榜</p>
+		<div>
+			<ul class='ul-title'>
+				<li>用户名</li>
+				<li style='text-align:right;'>帮助过的人数</li>
+			</ul>
+			<ul class='ul-list'>
+				<help limit='8'>
+					<li>
+						<a target="_blank" href="{$url}"><i class='rank r1'></i>{$username}</a>
+						<span>{$adopt}</span>
+					</li>
+				</help>				
+			</ul>
+		</div>
+	</div>
+</div>
+
+

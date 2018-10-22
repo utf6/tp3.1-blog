@@ -1,0 +1,1 @@
+<?php	return array ( 'ask_title' => '虎书问答', 'ask_keyword' => '虎书问答，问答，知道，知识共享', 'ask_description' => '虎书问答-Tigerbookweb开发问答', 'ask_copyright' => '虎书问答-Tigerbookweb开发问答', );?>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>编辑栏目</title>
+	<link rel="stylesheet" href="__PUBLIC__/Css/public.css" />
+</head>
+<body>
+	<form action="{:U('Cate/editCate')}" method='post'>
+		<table class="table">
+			<tr><th colspan='2' style="text-align:left"><b>编辑栏目</b></th></tr>
+			<tr>
+				<td align='right'><b>栏目名称：</b></td>
+				<td><input type="text" name='name' value="{$cate.name}" /></td>
+			</tr>
+			<tr>
+				<td align='right'><b>排序：</b></td>
+				<td><input type="text" name='sort' value="{$cate.sort}" /></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+					<input type="hidden" name='id' value="{$cate.id}" />
+					<input type="submit" value="保存修改" class="btn2" />
+				</td> 
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

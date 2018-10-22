@@ -1,0 +1,1 @@
+<?php	return array ( 'gold_answer' => '1', 'gold_del_answer' => '2', 'gold_adopt' => '2', 'gold_del_ask' => '2', 'gold_del_ask_adopt' => '3', 'gold_del_adopt_answer' => '3', );?>

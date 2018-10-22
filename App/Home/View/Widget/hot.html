@@ -1,0 +1,6 @@
+<h3><p>最热<span>文章</span></p></h3>
+<ul class="rank">
+	<foreach name='hot' item='v'>
+		<li><a href="{:U('/' . $v['id'])}" title="{$v.title}" target="_blank">{$v.title}</a></li>
+	</foreach> 
+</ul>

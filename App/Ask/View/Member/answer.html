@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>个人中心-{$Think.config.ask_title}</title>
+	<meta name="keywords" content="问答，知道，个人中心，"/>
+	<meta name="description" content="虎书问答是基于搜索的互动式知识问答分享平台。用户可以根据自身的需求，有针对性地提出问题；同时，这些答案又将作为搜索结果，满足有相同或类似问题的用户需求。"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/top-bar.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/member.css" />
+</head>
+<body>
+	<!-- top -->
+	<include file="Common:top" />
+	<div id='center'>
+		<!-- 左侧 -->
+		<include file="Common:m_left" />
+		<div id='right'>
+			<p class='title'><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>回答</p>
+			<ul class='ask-filter'>
+				<li <if condition='!isset($_GET["type"])'>class='cur'</if>><a href="{:U('Member/answer', array('id' => $_GET['id'], 'from' => 'answer'))}">全部回答</a></li>
+				<li <eq name='_GET["type"]' value='1'>class='cur'</eq>><a href="{:U('Member/answer', array('id' => $_GET['id'], 'from' => 'answer', 'type' => 1))}">被采纳的回答</a></li>
+			</ul>
+			<if condition='!isset($_GET["type"])'>
+				<div class='list list-filter'>
+					<table>
+						<if condition='$all_answer' >
+							<tr>
+								<th colspan='2' class='t1'>标题</th>
+								<th>回答</th>
+								<th width='120' class='t3'>更新时间</th>
+							</tr>
+							<foreach name='all_answer' item='v'>
+								<tr>
+									<td class='t1'>
+										<if condition='$v["reward"]'><b class='point'>{$v.reward}</b></if>
+										<a href="{:U('Answer/index', array('id' => $v['id'], 'cid' => $v['cid']))}">{:strCut($v['content'], 66)}</a>
+									</td>
+									<td><span>[ {$v.name} ]</span></td>
+									<td>{$v.answer}</td>
+									<td class='t3'>{:time_to_date($v['time'])}</td>
+								</tr>
+							</foreach>						
+						<else />
+							<tr height='140'>
+								<td>还没有回答过问题</td>
+							</tr>
+						</if>
+					</table>
+				</div>
+			</if>
+			<if condition='isset($_GET["type"])'>
+				<div class='list list-filter'>
+					<table>
+						<if condition='$adopt_answer'>
+							<tr>
+								<th class='t1'>标题</th>
+								<th>回答</th>
+								<th class='t3'>更新时间</th>
+							</tr>
+							<foreach name='adopt_answer' item='v'>
+								<tr>
+									<td class='t1'>
+										<if condition='$v["reward"]'><b class='point'>{$v.reward}</b></if>
+										<a href="{:U('Answer/index', array('id' => $v['id'], 'cid' => $v['cid']))}">{:strCut($v['content'], 66)}</a>
+									</td>
+									<td><span>[ {$v.name} ]</span></td>
+									<td>{$v.answer}</td>
+									<td class='t3'>{:time_to_date($v['time'])}</td>
+								</tr>
+							</foreach>							
+						<else />
+							<tr height='140'>
+								<td>还没有被采纳的回答</td>
+							</tr>
+						</if>
+					</table>
+				</div>
+			</if>
+		</div>
+	</div>
+<include file="Common:footer" />

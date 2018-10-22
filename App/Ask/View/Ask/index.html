@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>我要提问-{$Think.config.ask_title}</title>
+	<meta name="keywords" content="提问，知道，php，生活"/>
+	<meta name="description" content="虎书问答是基于搜索的互动式知识问答分享平台。用户可以根据自身的需求，有针对性地提出问题；同时，这些答案又将作为搜索结果，满足有相同或类似问题的用户需求。"/>
+	<link rel="stylesheet" href="__PUBLIC__/Css/common.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/index.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/top-bar.js'></script>
+	<script type="text/javascript">
+		var getCateUrl = "{:U('Ask/getCate')}";
+		var getCheckCateNameUrl = "{:U('Ask/getCheckCateName')}";
+		var point = 0;
+		var login = false;
+		<if condition="isset($_SESSION['uid']) && isset($_SESSION['ask_login_username'])">
+			var login = true;
+			var point = {$point};
+		</if>
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/Js/ask.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/ask.css" />
+</head>
+<body>
+	<!-- top -->
+	<include file="Common:top" />
+<!-- top结束 -->
+	<div id='location'>
+		<a href="__APP__/Ask">虎书问答</a>&nbsp;>&nbsp;提问
+	</div>
+
+<!--------------------中部-------------------->
+	<div id='center'>
+		<div class='send'>
+			<div class='title'>
+				<p class='left'>向亿万网友们提问</p>
+				<p class='right'>您还可以输入<span id='num'>100</span>个字</p>
+			</div>
+			<form action="{:U('Ask/send')}" id="send" method='post'>
+				<div class='cons'>
+					<textarea name="content"></textarea>
+				</div>
+				<div class='reward'>
+					<span id='sel-cate' class='cate-btn'>选择分类</span>
+					<ul>
+						<li>
+							<if condition="isset($_SESSION['uid']) and isset($_SESSION['username'])">
+								我的金币：<span>{$point}</span>
+							</if>
+						</li>
+						<li>
+					  悬赏：<select name="reward">
+								<option value="0">0</option>
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="50">50</option>
+								<option value="80">80</option>
+								<option value="100">100</option>
+							</select>金币
+						</li>
+					</ul>
+				</div>
+				<input type='hidden' name='cid' value='0'/>
+				<input type="submit" value='提交问题' class='send-btn'/>
+			</form>
+		</div>
+	</div>
+	<div id='category'>
+		<p class='title'>
+			<span>请选择分类</span>
+			<a href="" class='close-window'></a>
+		</p>
+		<div class='sel'>
+			<p>为您的问题选择一个合适的分类：</p>
+			<select name="cate-one" size='16'>
+				<foreach name='cate' item='v'>
+					<option value="{$v.id}">{$v.name}</option>
+				</foreach>				
+			</select>
+			<select name="cate-one" size='16' class='hidden'></select>
+			<select name="cate-one" size='16' class='hidden'></select>
+		</div>
+		<p class='bottom'>
+			<span id='ok'>确定</span>
+		</p>
+	</div>
+<!--------------------中部结束-------------------->
+<include file="Common:footer" />

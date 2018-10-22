@@ -1,0 +1,56 @@
+<div id='left'>
+	<userinfo id="$_GET['id']">
+		<div class='userinfo'>
+			<dl>
+				<dt>
+					<a href="{$url}"><img src="{$face}" width='48' height='48' alt="{$username}"/></a>
+				</dt>
+				<dd class='username'>
+					<a href="{$url}"><b>{$username}</b></a>
+					<a href="">
+						<i class='level lv1' title='Level 1'></i>
+					</a>
+				</dd>
+				<dd>金币：<a href="" style="color: #888888;"><b class='point'>{$point}</b></a></dd>
+				<dd>经验值：{$exp}</dd>
+			</dl>
+			<table>
+				<tr>
+					<td>回答数</td>
+					<td>采纳率</td>
+					<td class='last'>提问数</td>
+				</tr>
+				<tr>
+					<td><a href="">{$answer}</a></td>
+					<td><a href="">{$adopt}</a></td>
+					<td class='last'><a href="">{$ask}</a></td>
+				</tr>
+			</table>
+		</div>
+	</userinfo>
+
+	<ul>
+		<li class='myhome <if condition='!isset($_GET["from"])'>cur</if>'>
+			<a href="{:U('Member/index', array('id' => $_GET['id']))}"><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>首页</a>
+		</li>
+		<li class='myask <eq name='_GET["from"]' value="ask">cur</eq>'>
+			<a href="{:U('Member/ask', array('id' => $_GET['id'], 'from' => 'ask'))}"><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>提问</a>
+		</li>
+		<li class='myanswer <eq name='_GET["from"]' value="answer">cur</eq>'>
+			<a href="{:U('Member/answer', array('id' => $_GET['id'], 'from' => 'answer'))}"><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>回答</a>
+		</li>
+		<if condition='$_GET["id"] eq $_SESSION["uid"]'>
+			<li class='mylevel <eq name='_GET["from"]' value="level">cur</eq>'>
+				<a href="{:U('Member/level', array('id' => $_GET['id'], 'from' => 'level'))}"><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>等级</a>
+			</li>
+			<li class='mygold <eq name='_GET["from"]' value="point">cur</eq>'>
+				<a href="{:U('Member/point', array('id' => $_GET['id'], 'from' => 'point'))}"><if condition='$_GET["id"] eq $_SESSION["uid"]'>我的<else />Ta的</if>金币</a>
+			</li>		
+			<li class='myface <eq name='_GET["from"]' value="face">cur</eq>'>
+				<a href="{:U('Member/face', array('id' => $_GET['id'], 'from' => 'face'))}">上传头像</a>
+			</li>
+		</if>
+
+		<li style="background:none"></li>
+	</ul>
+</div>

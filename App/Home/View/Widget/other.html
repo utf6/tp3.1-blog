@@ -1,0 +1,8 @@
+<div class="otherlink">
+	<h2>相关文章</h2>
+	<ul>
+		<foreach name='other' item='v'>
+			<li><a href="{:U('/' . $v['id'])}" title="{$v.title}">{$v.title}</a></li>
+		</foreach>
+	</ul>
+</div>

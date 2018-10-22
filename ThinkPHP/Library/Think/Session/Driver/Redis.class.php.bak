@@ -1,0 +1,80 @@
+<?php 
+namespace Think\Session\Driver;
+use Think\Session;
+
+Class Redis{
+	//创建redis对象
+	Private $redis;
+
+	//session有效时间
+	Private $expire;
+
+	Public function execute() {
+		session_set_save_handler(
+			array(&$this, 'open'),
+			array(&$this, 'close'), 
+			array(&$this, 'write'),
+			array(&$this, 'destroy'),
+			array(&$this, 'read'), 
+			array(&$this, 'gc')
+			);
+	}
+
+	/**
+	 * 打开
+	 * @return [type] [description]
+	 */
+	Public function open($path, $name) {
+		$this->expire = C('SESSION_EXPIRE') ? C('SESSION_EXPIRE') : ini_get('
+			session.gc_maxlifetime')
+		$this->redis = new \Redis();
+		return $this->redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+	}
+
+	/**
+	 * 关闭
+	 * @return [type] [description]
+	 */
+	Public function close() {
+		return $this->redis->close();
+	}
+
+	/**
+	 * 写入
+	 * @param  [type] $id   [description]
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
+	Public function write($id, $data) {
+		$id =  C('SESSION_PREFIX') . $id;
+		return $this->redis($id, $data, $this->expire);
+	}
+
+	/**
+	 * 读取
+	 * @return [type] [description]
+	 */
+	Public function read($id) {
+		$id = C('SESSION_PREFIX') . $id; 
+		$data = $this->redis->get($id);
+		return $data ? $data : '';
+	}
+
+	/**
+	 * 销毁
+	 * @return [type] [description]
+	 */
+	Public function destroy($id) {
+		$id = C('SESSION_PREFIX') . $id;
+		return $this->redis->delete($id);
+	}
+
+	/**
+	 * 垃圾回收处理机制
+	 * @return [type] [description]
+	 */
+	Public function gc($maxLifeTime) {
+		return true;
+	}
+}
+?>

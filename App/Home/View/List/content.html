@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{$blog.title} - {$Think.config.blog_title}</title>
+	<meta name="keywords" content="{$Think.config.blog_keyword}" />
+	<meta name="description" content="{$Think.config.blog_description}" />
+
+	<link href="__PUBLIC__/css/index.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/base.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/template.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="__PUBLIC__/js/modernizr.js"></script>
+	<![endif]-->
+	<!-- 返回顶部调用 begin -->
+	<link href="__PUBLIC__/css/lrtk.css" rel="stylesheet" />
+	<link rel="stylesheet" href="__ROOT__/Data/Ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+	<script type="text/javascript" src="__ROOT__/Data/Ueditor/third-party/SyntaxHighlighter/shcore.js"></script>
+<script src="https://cdn.bootcss.com/prettify/r298/lang-apollo.js"></script>
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+	<style>
+		#ds-thread #ds-reset .ds-powered-by {display: none;}
+	</style>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/js.js"></script>
+	<!-- 返回顶部调用 end-->
+</head>
+<body>
+	<include file="Common:nav" />
+	<article class="blogs">
+		<h1 class="t_nav">
+		<span>您当前的位置：
+
+			<a href="http://www.tigerbook.cn">首页</a>&nbsp;>&nbsp;
+			<a href="{:U('/Web')}">Web开发</a>&nbsp;>&nbsp;
+			<a href="{:U('/c_' . $blog['cid'])}">{$blog.name}</a>
+		</span>
+		<a href="http://www.tigerbook.cn" class="n1">网站首页</a><a href="{:U('/c_' . $blog['cid'] )}" class="n2">{$blog.name}</a></h1>
+		<div class="index_about">
+    
+			<h2 class="c_titile">{$blog.title}</h2>
+			<p class="box_c">
+				<span class="d_time">发布时间：{$blog.addtime|date='Y-m-d',###}</span>
+				<span>编辑：<a href='mailto:634022773@qq.com'>Koba</a></span>
+				<span>阅读：（<script type="text/javascript" src="{:U('List/clickNum', array('id' => $blog['id']))}"></script>）</span>
+			</p>
+			<ul class="infos">{$blog.content} </ul>
+			<div class="blank"></div>
+			<div class="keybq"><p><span>关键字词</span>：{$blog.name}</p></div>
+			<div class="blank"></div>
+			<div class="nextinfo">
+				<span>上一篇：<if condition="$pre['id']"><a href="{:U('/' . $pre['id'])}">{$pre.title}</a><else/><a>{$pre.title}</a> </if></span>
+				<span style="float:right">下一篇：<if condition="$next['id']"><a href="{:U('/' . $next['id'])}">{$next.title}</a><else/><a>{$next.title}</a> </if></span>
+			</div>
+			{:W('Blog/other', array($blog['name']))}
+			<div class="blank"></div>
+			<!-- 猜你喜欢 -->
+                <div id="hm_t_106521"></div>
+    		<!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="{$blog['id']}" data-title="{$blog.title}" data-url="{:U('/' . $blog['id'])}"></div>
+			
+		</div>
+		<aside class="right">
+			<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=9703181702474863577' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+
+			{:W('Blog/nav')}
+
+			<div class="blank"></div>
+			<include file="Common:right"/>
+		</aside>
+	</article>
+	<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tigerbook"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- footer -->
+<link href="__ROOT__/Data/Ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet">
+<script type="text/javascript" src='__ROOT__/Data/Ueditor/third-party/SyntaxHighlighter/shCore.js'></script>
+<script type="text/javascript">
+	SyntaxHighlighter.all();
+</script>
+	<include file="Common:footer"/>
+</body>
+</html>
